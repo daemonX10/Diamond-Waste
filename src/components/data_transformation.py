@@ -11,7 +11,7 @@ import numpy as np
 
 from src.exception import CustomException
 from src.logger import logging
-from src.utils import save_object
+from src.utils.save import save_object
 
 ## Data Transformation Config   
 
@@ -58,7 +58,7 @@ class DataTransformation:
             )
             
             preprocessor = ColumnTransformer([
-                ('num_pipeline',num_pipeline,numerical_cols)
+                ('num_pipeline',num_pipeline,numerical_cols),
                 ('cat_pipeline',cat_pipeline,categorical_cols)
             ])
             

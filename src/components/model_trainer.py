@@ -7,7 +7,8 @@ from sklearn.neighbors import KNeighborsRegressor
 
 from src.exception import CustomException
 from src.logger import logging
-from src.utils import evaluate_model,save_object
+from src.utils.save import save_object
+from src.utils.evaluate import evaluate_model
 
 from dataclasses import dataclass
 import sys,os

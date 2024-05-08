@@ -37,9 +37,4 @@ def predict():
         return render_template('form.html',  prediction_text = 'Predicted Price: $ {}'.format(results))
 
 if __name__=='__main__':
-    print("Server is running at port 3000")
-    print("link:",'http://localhost:3000/')
-    app.run(host='0.0.0.0',port=3000,debug=True)
-    
-    
-   
+    app.run()

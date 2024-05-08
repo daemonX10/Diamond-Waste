@@ -32,7 +32,7 @@ class DataTransformation:
             # Define which columns should be ordinal-encoded and which should be scaled
             
             categorical_cols = ['cut','color','clarity']
-            numerical_cols = ['carat','depth','table','x','y','z']
+            numerical_cols = ['carat','depth','table']
             
             # Define the custom ranking for each ordinal variable
             cut_categories = ['Fair','Good','Very Good','Premium','Ideal']
@@ -88,11 +88,8 @@ class DataTransformation:
 # imputation and scaling for numerical columns, and ordinal encoding for categorical columns. The
 # `ColumnTransformer` combines these pipelines into a single preprocessing object that can be used to
 # transform the data.
-
-            preprocessing_obj = self.get_data_tranformation_object()
-            
             target_column_name = 'price'
-            drop_columns = [target_column_name,'id']
+            drop_columns = [target_column_name,'id','x','y','z']
             
             input_features_train_df = train_df.drop(columns=drop_columns,axis=1)
             target_features_train_df = train_df[target_column_name]
@@ -103,6 +100,8 @@ class DataTransformation:
             logging.info('Applying Data Transformation on Train and Test Data')
             
             ## Appling the transformation and creating the pickle for scaler
+            
+            preprocessing_obj = self.get_data_tranformation_object()
             
             input_features_train_arr = preprocessing_obj.fit_transform(input_features_train_df)
             

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?diamond,jems, jewelry');
+            background-size: cover;
+            background-repeat: no-repeat;
+            }
+
+        .main-container {
+                background: linear-gradient(rgb(255, 255, 255), rgba(118, 205, 255, 0.9))
+        }
+
+    </style>
+</head>
+
+<body class="h-[100%]" >
+    <div class="container mx-auto my-8  p-4 h-full">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white">Diamond Price Prediction Model</h1>
+            <p class="text-lg text-white mt-2">Predict Prices of diamond with machine learning</p>
+        </div>
+        <div class="main-container grid grid-cols-1 md:grid-cols-2 gap-6 rounded-2xl">
+            <div class="rounded-lg shadow-md p-6">
+                <form class="space-y-4" action="{{url_for('predict')}}" method="post">
+                    <div class="mb-4">
+                        <label for="carat" class="block mb-1">Carat (g):</label>
+                        <input type="number" name="carat" id="carat" step="0.01" min="0.01" max="5" value="0.5" placeholder="physical weight of diamonds" class="w-full px-3 py-2 border rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="depth" class="block mb-1">Depth (mm):</label>
+                        <input type="number" name="depth" id="depth" step="0.1" min="40" max="80" value="60" placeholder="distance from the bottom tip to the top surface"  class="w-full px-3 py-2 border rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="table" class="block mb-1">Table:</label>
+                        <input type="number" name="table" id="table" step="0.1" min="40" max="100" value="60" placeholder="largest facet on the top of the diamond" class="w-full px-3 py-2 border rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="cut" class="block mb-1">Cut:</label>
+                        <select id="cut" name="cut" class="w-full px-3 py-2 border rounded">
+                            <option value="Ideal">Ideal</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Very Good">Very Good</option>
+                            <option value="Good">Good</option>
+                            <option value="Fair">Fair</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="color" class="block mb-1">Color:</label>
+                        <select id="color" name="color" class="w-full px-3 py-2 border rounded">
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="J">J</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="clarity" class="block mb-1">Clarity:</label>
+                        <select id="clarity" name="clarity" class="w-full px-3 py-2 border rounded">
+                            <option value="IF">IF</option>
+                            <option value="VVS1">VVS1</option>
+                            <option value="VVS2">VVS2</option>
+                            <option value="VS1">VS1</option>
+                            <option value="VS2">VS2</option>
+                            <option value="SI1">SI1</option>
+                            <option value="SI2">SI2</option>
+                            <option value="I1">I1</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Predict</button>
+                    </div>
+                </form>
+            </div>
+            <div class="rounded-lg shadow-md p-6">
+                <h2 class="text-xl text-center font-semibold text-gray-800 m-4">About the Model</h2>
+                <p class="text-gray-700 text-center">Our model uses machine learning algorithms to predict the Price of Diamond Using Feature like
+                    Carar (size) , Color , Clarity , Cut of Diamond. For this model we have used Gradient Boosting Regressor . This is
+                    end to end project where we have trained the model and deployed , pipeline is for ingestion of data and prediction
+                    of price.
+                </p>
+                <h2 class="text-xl  text-gray-800 mt-4 mb-2 text-center ">Model Accuracy 98%</h2>
+                <h2 class="text-2xl font-bold text-green-700 mt-4 mb-2 bg-green-100 p-3 rounded shadow text-center">
+                    {{prediction_text}}</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
